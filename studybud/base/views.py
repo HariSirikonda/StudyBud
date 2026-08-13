@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Room
 from .forms import RoomForm
 
@@ -22,5 +22,12 @@ def room(request, pk):
 
 def cerateRoom(request):
     form = RoomForm()
-    context = {'form' : form}
+
+    if request.method == 'POST':
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
     return render(request, 'base/room_form.html', context)
