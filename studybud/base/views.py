@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Room
+from .forms import RoomForm
 
 rooms = [
     {"id" : 1, "name" : "Hari Kiran"},
@@ -20,5 +21,6 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 def cerateRoom(request):
-    context = {}
+    form = RoomForm()
+    context = {'form' : form}
     return render(request, 'base/room_form.html', context)
