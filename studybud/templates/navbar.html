@@ -2,8 +2,7 @@
     <h1>Logo</h1>
 </a>
 
-<a href="room/">
-    <h1>room</h1>
-</a>
-
+<form method="GET" action="{% url 'home' %}">
+    <input type="input" name="q" placeholder="Search the rooms..." />
+</form>
 <hr>
